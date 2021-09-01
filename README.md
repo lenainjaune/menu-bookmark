@@ -2,6 +2,7 @@
 Fuzzy bookmarks for your shell
 
 [Source](https://dmitryfrank.com/articles/shell_shortcuts)
+
 ![Result](https://dmitryfrank.com/_media/articles/cdg_recorded.gif)
 ```sh
 git clone --depth 1 https://github.com/junegunn/fzf.git
