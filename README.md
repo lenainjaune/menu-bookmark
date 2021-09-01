@@ -16,7 +16,7 @@ EOF"
 cat << EOF > ~/.cdg_paths
 /mnt/3tb/ # les vms
 EOF
-cdgg(){ c=$( cat /etc/cdg_paths ~/.cdg_paths \
+cdg(){ c=$( cat /etc/cdg_paths ~/.cdg_paths \
  | gawk '{ print gensub ( /(.+) #.+/ , "\\1" , "g" ) }' \
  | fzf ) ; [[ "$c" != "" ]] && cd "$c" ; }
 ```
