@@ -5,6 +5,8 @@ Fuzzy bookmarks for your shell
 
 ![Result](https://dmitryfrank.com/_media/articles/cdg_recorded.gif)
 ```sh
+# Prerequisite : needs gawk
+# install
 git clone --depth 1 https://github.com/junegunn/fzf.git
 fzf/install
 source ~/.bashrc
