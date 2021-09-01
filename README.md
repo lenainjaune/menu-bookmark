@@ -6,6 +6,7 @@ Fuzzy bookmarks for your shell
 git clone --depth 1 https://github.com/junegunn/fzf.git
 fzf/install
 source ~/.bashrc
+# example
 su -c "cat << EOF > /etc/cdg_paths
 /media/lnj/VBIG # video, zik etc
 /media/lnj/DATA
