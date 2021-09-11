@@ -68,7 +68,7 @@ Non creusé mais une fois fzf installé, quand je lance une recherche depuis une
 #		extraire de la ligne choisie, le commentaire s'il existe et la 
 #		commande, en les restituant avec un trim droit et gauche des 
 #		espaces
-# [5] perl ... : insère la commande (copier en l'état sans maitriser 
+# [5] perl ... : insère la commande (copié en l'état sans maitriser 
 #		quoi que ce soit) ; voir 
 #		https://github.com/junegunn/fzf/issues/1695
 
