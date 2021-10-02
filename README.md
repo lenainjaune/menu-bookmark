@@ -52,8 +52,8 @@ Non creusé mais une fois fzf installé, quand je lance une recherche depuis une
 #	la commande peut être multiple/composée ; ex : ( a | b ) 2&>1 | c
 # [2] gawk 'BEGIN { ... } { ... } END { ... }' :
 #	BEGIN { ... } : initialiser
-#	! /^...# : élimine les commentaires internes
-#	le corps : convertir chaque ligne pour rendre dissociable le 
+#	le corps : si la ligne n'est pas un commentaire interne
+#		convertir chaque ligne pour rendre dissociable le 
 #		commentaire optionnel, de la commande par le caractère null 
 #		(\0) et la stocker dans un tableau ; extraire le commentaire 
 #		s'il existe pour déterminer sa taille qui servira au padding 
