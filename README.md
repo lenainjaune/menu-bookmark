@@ -52,6 +52,7 @@ Non creusé mais une fois fzf installé, quand je lance une recherche depuis une
 #	la commande peut être multiple/composée ; ex : ( a | b ) 2&>1 | c
 # [2] gawk 'BEGIN { ... } { ... } END { ... }' :
 #	BEGIN { ... } : initialiser
+#	! /^...# : élimine les commentaires internes
 #	le corps : convertir chaque ligne pour rendre dissociable le 
 #		commentaire optionnel, de la commande par le caractère null 
 #		(\0) et la stocker dans un tableau ; extraire le commentaire 
@@ -73,11 +74,14 @@ Non creusé mais une fois fzf installé, quand je lance une recherche depuis une
 #		https://github.com/junegunn/fzf/issues/1695
 
 # TODO : corriger le bug du [5] lors de l'insertion de la commande => CMD user@host:~$ CMD
+# => sur lnj-tosh je n'ai pas ce pb, ça fonctionne nickel ! Peut être le pb est uniquement sur certains (ex : Ubuntu Xenial 16.04 LTS)
 
 choose_ssh_bookmarks(){ cat ~/ssh_bookmarks \
 | gawk 'BEGIN { \
 		nb_bookmarks = 0 ; \
-	} { \
+        } \
+         ! /^[[:space:]]*#/ \
+        { \
 		line = gensub ( /(`#.+` * ; *)*(.+)/ , \
 		 "\\1\0\\2" , "g" ) ; \
 		bookmarks [ nb_bookmarks++ ] = line ; \
