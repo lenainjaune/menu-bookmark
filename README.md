@@ -81,7 +81,7 @@ choose_ssh_bookmarks(){ cat ~/ssh_bookmarks \
 | gawk 'BEGIN { \
 		nb_bookmarks = 0 ; \
         } \
-         ! /^[[:space:]]*#/ \
+         ! /^([[:space:]]*#|$)/ \
         { \
 		line = gensub ( /(`#.+` * ; *)*(.+)/ , \
 		 "\\1\0\\2" , "g" ) ; \
