@@ -22,7 +22,7 @@ cdg(){ c=$( cat /etc/cdg_paths ~/.cdg_paths \
  | gawk '{ print gensub ( /(.+) #.+/ , "\\1" , "g" ) }' \
  | fzf ) ; [[ "$c" != "" ]] && cd "$c" ; }
 ```
-Non creusé mais une fois fzf installé, quand je lance une recherche depuis une console (ctrl+r), l'interface habituelle de recherche est remplacé par un accès fzf depuis l'historique de la commande **history** (je ne sais pas où c'est paramétré) et quand on sélectionne une ligne, elle s'écrit à la suite du prompt comme si je venait de taper la commande manuellement, qu'il ne restera plus qu'à valider comme n'importe quelle commande. J'ai trouvé cette [source](https://github.com/junegunn/fzf/issues/1695) qui cherche à utiliser le même mécanisme pour le reproduire mais apparemment le fil n'indique pas de solution finale. Je cherche exactement la même chose, donc à étudier.
+Une fois fzf installé, quand je lance une recherche depuis une console (ctrl+r), l'interface habituelle de recherche est remplacé par un accès fzf depuis l'historique de la commande **history** (je ne sais pas où c'est paramétré) et quand on sélectionne une ligne, elle s'écrit à la suite du prompt comme si je venait de taper la commande manuellement, qu'il ne restera plus qu'à valider comme n'importe quelle commande. J'ai trouvé cette [source](https://github.com/junegunn/fzf/issues/1695) qui cherche à utiliser le même mécanisme pour le reproduire. Le fil indique une solution qui marche sur certains systèmes et pas sur d'autres. A étudier...
 
 ```sh
 # Afficher/filtre bookmarks et exécuter la commande du bookmark choisi
@@ -40,19 +40,20 @@ Non creusé mais une fois fzf installé, quand je lance une recherche depuis une
 #
 # [1] le fichier bookmark est composé de lignes :
 #	# commentaire interne aux bookmarks
+#	
 #	`# commentaire de commande` ; commande
 #	commande
 # Notas : 
-#	un commentaire de commande doit commencer par `#' est optionnel 
+#	o un commentaire de commande doit commencer par `#' est optionnel
 #		mais conseillé et ne sera pas exécuté ; voir 
 # https://stackoverflow.com/questions/9522631/how-to-put-a-line-comment-for-a-multi-line-command
 #		utile par exemple pour identifier un accès ssh par du port 
-#forwarding (ex : port 10022 -> port SSH du NAS) vu qu'on ne peut pas 
+# 		forwarding (ex : port 10022 -> port SSH du NAS) vu qu'on ne peut pas 
 #		nommer des ports
-#	la commande peut être multiple/composée ; ex : ( a | b ) 2&>1 | c
+#	o la commande peut être multiple/composée ; ex : ( a | b ) 2&>1 | c
 # [2] gawk 'BEGIN { ... } { ... } END { ... }' :
 #	BEGIN { ... } : initialiser
-#	le corps : si la ligne n'est pas un commentaire interne
+#	le corps : si la ligne n'est pas un commentaire interne ou une ligne vide
 #		convertir chaque ligne pour rendre dissociable le 
 #		commentaire optionnel, de la commande par le caractère null 
 #		(\0) et la stocker dans un tableau ; extraire le commentaire 
